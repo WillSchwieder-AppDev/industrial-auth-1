@@ -1,17 +1,24 @@
-<div class="row mb-4">
-  <div class="col-md-6 offset-md-3">
-    <h1 class="display-4">
-      feed
-    </h1>
-
-    <p class="lead text-muted">posts by people you follow</p>
-  </div>
-</div>
-
-<% @user.feed.each do |photo| %>
+<% if @user == current_user %>
   <div class="row mb-4">
     <div class="col-md-6 offset-md-3">
-      <%= render "photos/photo", photo: photo %>
+      <h1 class="display-4">
+        feed
+      </h1>
+      <p class="lead text-muted">posts by people you follow</p>
     </div>
   </div>
+  <% @user.feed.each do |photo| %>
+    <div class="row mb-4">
+      <div class="col-md-6 offset-md-3">
+        <%= render "photos/photo", photo: photo %>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <head>
+    <meta http-equiv="refresh" content="7; url='/<%= current_user.username %>/feed'" />
+  </head>
+  <body>
+    <p>Please wait to be redirected to your feed or follow <a href='/<%= current_user.username %>/feed'>this link</a>.</p>
+  </body>
 <% end %>
