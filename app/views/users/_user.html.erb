@@ -48,8 +48,9 @@
 
         <% end %>
       </div>
-
+      <% if @user == current_user %>
       <div class="col">
+      
         <%=
           link_to "#",
             data: { 
@@ -65,7 +66,9 @@
 
         <% end %>
       </div>
+      <% end %>
     </div>
+    
 
     <div class="row mb-3">
       <div class="col">
@@ -94,7 +97,7 @@
         <% end %>
       </div>
     </div>
-
+    <% if @user != current_user %>
     <div class="row mb-4">
       <div class="col">
         <% follow_request = current_user.sent_follow_requests.find_by(recipient: @user) %>
@@ -111,6 +114,7 @@
         <% end %>
       </div>
     </div>
+    <% end %>
 
     <h3 class="h5">
       <%= user.name %>

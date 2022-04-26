@@ -3,7 +3,7 @@
     <%= render "users/user", user: @user %>
   </div>
 </div>
-<% if @user.private == false || FollowRequest.find_by(sender_id: current_user, recipient_id: @user.id, status: "accepted") != nil %>
+<% if @user.private == false || FollowRequest.find_by(sender_id: current_user, recipient_id: @user.id, status: "accepted") != nil || @user == current_user %>
   
   <div class="row mb-2">
     <div class="col-md-6 offset-md-3">
